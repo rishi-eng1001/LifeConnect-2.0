@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LifeConnect - Search</title>
+    <style>
+        body {
+            font-family: Arial;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            margin: 5px;
+            width: 95%
+        }
+
+        button {
+            background: red;
+            color: white;
+            border: none
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🩸 LifeConnect</h1>
+    <a href="/register">Become a Donor</a>
+    <h2>Find Blood Donor</h2>
+    <form method="POST">
+        <select name="blood_group" required>
+            <option value="">Select Blood Group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+        </select>
+        <input type="text" name="city" placeholder="Enter City e.g. Lucknow" required>
+        <button type="submit">Search Donor</button>
+    </form>
+</body>
+
+</html>
