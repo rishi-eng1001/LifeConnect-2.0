@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Donors</title>
+</head>
+
+<body>
+    <h1>Donor List</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Blood</th>
+            <th>City</th>
+            <th>Phone</th>
+        </tr>
+        {% for donor in donors %}
+        <tr>
+            <td>{{ donor[1] }}</td>
+            <td>{{ donor[2] }}</td>
+            <td>{{ donor[3] }}</td>
+            <td>{{ donor[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
