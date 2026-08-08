@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hospital Blood Stock</title>
+</head>
+
+<body>
+    <h2>🏥 Hospital Me Blood Stock Check Karo</h2>
+    <form method="POST">
+        Blood Group: <input type="text" name="blood" placeholder="B+" required>
+        City: <input type="text" name="city" placeholder="Lucknow" required>
+        <input type="submit" value="Search">
+    </form>
+    <hr>
+    {% if results %}
+    <h3>Result:</h3>
+    {% for r in results %}
+    <p><b>{{r.hospital_name}}</b> - {{r.blood_group}} : {{r.quantity_ml}} ML Available</p>
+    {% endfor %}
+    {% else %}
+    <p>Koi result nahi mila</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+
+</html>
