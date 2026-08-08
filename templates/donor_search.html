@@ -2,27 +2,71 @@
 <html>
 
 <head>
-    <title>Donors</title>
+    <title>Find Donor</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        input,
+        button {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        td,
+        th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Donor List</h1>
-    <table border="1">
+    <h2>🔍 Find Blood Donor</h2>
+    <form method="POST">
+        <label>Blood Group:</label>
+        <input name="blood_group" placeholder="B+" required>
+
+        <label>City:</label>
+        <input name="city" placeholder="Lucknow" required>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+    {% if msg %}<p style="color:red;"><b>{{msg}}</b></p>{% endif %}
+
+    {% if donors %}
+    <table>
         <tr>
             <th>Name</th>
             <th>Blood</th>
             <th>City</th>
             <th>Phone</th>
         </tr>
-        {% for donor in donors %}
+        {% for d in donors %}
         <tr>
-            <td>{{ donor[1] }}</td>
-            <td>{{ donor[2] }}</td>
-            <td>{{ donor[3] }}</td>
-            <td>{{ donor[4] }}</td>
+            <td>{{d.name}}</td>
+            <td>{{d.blood_group}}</td>
+            <td>{{d.city}}</td>
+            <td>{{d.phone}}</td>
         </tr>
         {% endfor %}
     </table>
+    {% endif %}
+    <a href="/">Back to Home</a>
 </body>
 
 </html>

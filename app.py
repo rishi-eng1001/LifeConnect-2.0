@@ -57,15 +57,37 @@ def addfake():
 
 @app.route('/addhospitaldata')
 def addhospitaldata():
-    hospitals = ["AIIMS Delhi","SGPGI Lucknow","PMCH Patna","KGMU Lucknow","RML Hospital Delhi"]
+    hospitals = [
+        "AIIMS Delhi", "RML Hospital Delhi", "Max Hospital Delhi",
+        "SGPGI Lucknow", "KGMU Lucknow", "Medanta Lucknow", 
+        "PMCH Patna", "IGIMS Patna", "AIIMS Patna",
+        "Motipur Sadar Hospital", "Motipur City Hospital",
+        "BHU Hospital Varanasi", "KGMU Varanasi",
+        "Kanpur Medical College", "Lala Lajpat Hospital Kanpur",
+        "Gaya Medical College", "Anugrah Hospital Gaya",
+        "Kokilaben Hospital Mumbai", "Lilavati Hospital Mumbai",
+        "Apollo Hospital Bangalore", "Fortis Hospital Bangalore",
+        "Apollo Hospital Kolkata", "AMRI Hospital Kolkata"
+    ]
     blood = ["A+","A-","B+","B-","O+","O-","AB+","AB-"]
-    cities = ["Delhi","Lucknow","Patna","Motipur"]
+    cities = ["Delhi","Lucknow","Patna","Motipur","Varanasi","Kanpur","Gaya","Mumbai","Bangalore","Kolkata"]
+    
+    # Purana data delete taaki duplicate na ho
+    HospitalBlood.query.delete()
+    
+    count = 0
     for h in hospitals:
         for b in blood:
-            for c in cities:
-                db.session.add(HospitalBlood(hospital_name=h, blood_group=b, city=c, quantity_ml=random.randint(500, 10000)))
+            for c in cities: 
+                db.session.add(HospitalBlood(
+                    hospital_name=h, 
+                    blood_group=b, 
+                    city=c, 
+                    quantity_ml=random.randint(500, 15000)
+                ))
+                count += 1
     db.session.commit()
-    return "Hospital Data Added! <a href='/hospital-stock'>Check Stock</a>"
+    return f"✅ {count} Hospital Records Added! For {len(cities)} Cities & {len(blood)} Blood Groups. <a href='/hospital-stock'>Check Stock</a>"
 
 @app.route('/hospital-stock', methods=['GET', 'POST'])
 def hospital_stock():
