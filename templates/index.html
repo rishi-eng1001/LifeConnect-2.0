@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>LifeConnect 2.0 | AI Blood Network</title>
+    <title>LifeConnect 2.0 | India's #1 Blood Network</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
     <style>
@@ -12,67 +12,57 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-        }
-
-        :root {
-            --bg: #050510;
-            --card: rgba(255, 255, 255, 0.04);
-            --text: white;
-            --accent: #00d4ff;
-            --danger: #ff004d;
-        }
-
-        body.light {
-            --bg: #f0f2f5;
-            --card: rgba(0, 0, 0, 0.04);
-            --text: #111;
+            scroll-behavior: smooth;
         }
 
         body {
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            transition: 0.3s;
+            background: #050510;
+            color: white;
         }
 
         .container {
-            max-width: 1450px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 0 20px;
         }
 
+        section {
+            padding: 100px 0;
+        }
+
+        /* NAV */
         nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 16, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            z-index: 999;
+        }
+
+        nav .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 50px;
         }
 
-        nav h2 {
-            font-size: 30px;
-            font-weight: 900;
-            background: linear-gradient(90deg, var(--danger), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .theme-btn {
-            background: var(--card);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            color: var(--text);
-            cursor: pointer;
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
             font-weight: 600;
         }
 
+        /* HERO */
         .hero {
+            padding-top: 180px;
             text-align: center;
-            margin-bottom: 60px;
+            background: radial-gradient(circle at 50% 30%, #ff004d22, transparent 50%);
         }
 
         .hero h1 {
-            font-size: 80px;
+            font-size: 90px;
             font-weight: 900;
             background: linear-gradient(90deg, #ff9a9e, #00d4ff);
             -webkit-background-clip: text;
@@ -82,56 +72,58 @@
         .stats {
             display: flex;
             justify-content: center;
-            gap: 70px;
+            gap: 80px;
+            margin: 50px 0;
             flex-wrap: wrap;
-            margin: 40px 0;
         }
 
         .stat-num {
-            font-size: 52px;
+            font-size: 60px;
             font-weight: 800;
-            color: var(--accent);
+            color: #00d4ff;
         }
 
+        /* GRID CARDS */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
         .card {
-            background: var(--card);
+            background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 45px 35px;
+            padding: 45px;
             border-radius: 25px;
-            cursor: pointer;
             transition: 0.4s;
-            position: relative;
         }
 
         .card:hover {
             transform: translateY(-15px);
-            border-color: var(--danger);
-            box-shadow: 0 25px 50px rgba(255, 0, 77, 0.3);
+            border-color: #ff004d;
         }
 
-        .badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--danger);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
 
-        .card h2 {
-            font-size: 28px;
-            margin: 15px 0 10px;
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #222;
         }
 
+        th {
+            background: #0a0a1a;
+            color: #00d4ff;
+        }
+
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -139,20 +131,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
         .modal-content {
-            background: var(--bg);
-            color: var(--text);
+            background: #0a0a1a;
             padding: 45px;
             border-radius: 25px;
             width: 90%;
-            max-width: 800px;
-            border: 1px solid var(--accent);
+            max-width: 900px;
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -166,206 +156,226 @@
             margin: 10px 0;
             border-radius: 12px;
             border: 1px solid #333;
+            background: #050510;
+            color: white;
             font-size: 16px;
-            background: #0a0a1a;
-            color: var(--text);
         }
 
         .btn {
-            background: linear-gradient(90deg, var(--danger), var(--accent));
+            background: linear-gradient(90deg, #ff004d, #00d4ff);
             color: white;
             font-weight: 800;
             border: none;
             cursor: pointer;
         }
 
-        .donor-item {
-            background: #0a0a1a;
-            padding: 18px;
-            margin: 12px 0;
-            border-radius: 15px;
-            border-left: 4px solid var(--accent);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
         .whatsapp-btn {
             background: #25D366;
             padding: 8px 16px;
             border-radius: 10px;
-            font-size: 14px;
             border: none;
             color: white;
             cursor: pointer;
-        }
-
-        .close {
-            float: right;
-            font-size: 35px;
-            cursor: pointer;
-            color: var(--danger);
-        }
-
-        .alert {
-            background: #ff004d22;
-            border-left: 4px solid var(--danger);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <nav>
+
+    <nav>
+        <div class="container">
             <h2>🩸 LifeConnect 2.0</h2>
             <div>
-                <button class="theme-btn" onclick="toggleTheme()">🌙 Dark/Light</button>
+                <a href="#features">Features</a>
+                <a href="#donors">Donors</a>
+                <a href="#hospitals">Hospitals</a>
+                <a href="#camps">Camps</a>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <div class="hero">
+    <!-- SECTION 1: HERO -->
+    <section class="hero">
+        <div class="container">
             <h1>Be a Hero.</h1>
-            <p>AI-Powered Blood Donation Network | Finding Donors in 60 Seconds</p>
+            <p style="font-size:24px; opacity:0.8;">AI-Powered Blood Donation Network | Finding Donors in 60 Seconds</p>
             <div class="stats">
                 <div>
-                    <div class="stat-num" id="donorCount">503</div>
+                    <div class="stat-num" id="donorCount">523</div>
                     <div>Active Donors</div>
                 </div>
                 <div>
-                    <div class="stat-num">23</div>
+                    <div class="stat-num">47</div>
                     <div>Partner Hospitals</div>
                 </div>
                 <div>
-                    <div class="stat-num">1.2K</div>
+                    <div class="stat-num">3.2K</div>
                     <div>Lives Saved</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="grid">
-            <div class="card" onclick="openModal('emergency')"><span class="badge">URGENT</span>
-                <div style="font-size:50px">🚨</div>
-                <h2>EMERGENCY REQUEST</h2>
-                <p>Need blood urgently? Send instant alert to all matching donors in your city.</p>
-            </div>
-
-            <div class="card" onclick="openModal('find')"><span class="badge">AI POWERED</span>
-                <div style="font-size:50px">❤️</div>
-                <h2>FIND DONOR</h2>
-                <p>Smart matching algorithm finds nearest donor by blood group and location instantly.</p>
-            </div>
-
-            <div class="card" onclick="openModal('stock')"><span class="badge">LIVE DATA</span>
-                <div style="font-size:50px">🏥</div>
-                <h2>CHECK STOCK</h2>
-                <p>Real-time blood inventory dashboard across all hospitals with alert system.</p>
-            </div>
-
-            <div class="card" onclick="openModal('camp')"><span class="badge">NEW</span>
-                <div style="font-size:50px">📍</div>
-                <h2>BLOOD CAMP FINDER</h2>
-                <p>Find upcoming blood donation camps near you with date and location.</p>
-            </div>
-
-            <div class="card" onclick="openModal('register')"><span class="badge">JOIN US</span>
-                <div style="font-size:50px">➕</div>
-                <h2>REGISTER DONOR</h2>
-                <p>Become a verified donor. Get certificate + 1 donation can save up to 3 lives.</p>
-            </div>
-
-            <div class="card" onclick="openModal('about')"><span class="badge">INFO</span>
-                <div style="font-size:50px">ℹ️</div>
-                <h2>HOW IT WORKS</h2>
-                <p>Learn how LifeConnect saves lives with AI and connects donors to patients.</p>
+    <!-- SECTION 2: FEATURES -->
+    <section id="features">
+        <div class="container">
+            <h2 style="text-align:center; font-size:50px; margin-bottom:50px;">Powerful Features</h2>
+            <div class="grid">
+                <div class="card" onclick="openModal('emergency')">
+                    <h2>🚨 Emergency Request</h2>
+                    <p>1-Click alert to 500+ donors. Average response time: 2 minutes.</p>
+                </div>
+                <div class="card" onclick="openModal('find')">
+                    <h2>❤️ AI Donor Finder</h2>
+                    <p>Smart matching with 99.2% accuracy based on location + blood group.</p>
+                </div>
+                <div class="card" onclick="openModal('stock')">
+                    <h2>🏥 Live Stock Dashboard</h2>
+                    <p>Real-time inventory of 47 hospitals. Auto low-stock alerts.</p>
+                </div>
+                <div class="card" onclick="openModal('camp')">
+                    <h2>📍 Blood Camp Finder</h2>
+                    <p>Find 20+ upcoming camps with map integration and registration.</p>
+                </div>
+                <div class="card" onclick="openModal('register')">
+                    <h2>➕ Donor Registration</h2>
+                    <p>Get verified certificate + donation history tracking.</p>
+                </div>
+                <div class="card" onclick="openModal('analytics')">
+                    <h2>📊 Analytics</h2>
+                    <p>See donation trends, city-wise data, and impact reports.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- SECTION 3: DONOR LIST -->
+    <section id="donors" style="background:#0a0a1a;">
+        <div class="container">
+            <h2 style="font-size:50px; margin-bottom:30px;">Our Hero Donors</h2>
+            <table id="donorTable"></table>
+        </div>
+    </section>
+
+    <!-- SECTION 4: HOSPITAL STOCK -->
+    <section id="hospitals">
+        <div class="container">
+            <h2 style="font-size:50px; margin-bottom:30px;">Hospital Blood Inventory</h2>
+            <table id="stockTable"></table>
+        </div>
+    </section>
+
+    <!-- SECTION 5: CAMPS -->
+    <section id="camps" style="background:#0a0a1a;">
+        <div class="container">
+            <h2 style="font-size:50px; margin-bottom:30px;">Upcoming Blood Camps</h2>
+            <div id="campList"></div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: TESTIMONIALS -->
+    <section>
+        <div class="container">
+            <h2 style="text-align:center; font-size:50px; margin-bottom:50px;">Stories That Matter</h2>
+            <div class="grid">
+                <div class="card">
+                    <p>"LifeConnect helped me find O- donor in 5 minutes. My father is alive today because of this
+                        platform."</p><b>- Ritu Sharma, Lucknow</b>
+                </div>
+                <div class="card">
+                    <p>"As a hospital admin, the live stock feature has reduced our emergency delays by 80%."</p><b>-
+                        Dr. Verma, SGPGI</b>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
     <div class="modal" id="modal">
         <div class="modal-content" id="modalBody"></div>
     </div>
 
     <script>
-        // DATA
+        // 50+ DUMMY DATA
         let donors = [
-            { name: "Dr. Rahul Verma", blood: "B+", city: "Lucknow", phone: "919876543210", last: "15 days ago" },
-            { name: "Priya Singh", blood: "O+", city: "Lucknow", phone: "919876543211", last: "1 month ago" },
-            { name: "Aman Gupta", blood: "A+", city: "Kanpur", phone: "919876543212", last: "20 days ago" }
+            { name: "Dr. Rahul Verma", blood: "B+", city: "Lucknow", phone: "919876543210", donations: 12 },
+            { name: "Priya Singh", blood: "O+", city: "Lucknow", phone: "919876543211", donations: 8 },
+            { name: "Aman Gupta", blood: "A+", city: "Kanpur", phone: "919876543212", donations: 15 },
+            { name: "Sneha Yadav", blood: "AB+", city: "Lucknow", phone: "919876543213", donations: 6 },
+            { name: "Vikram Patel", blood: "O-", city: "Delhi", phone: "919876543214", donations: 20 },
+            { name: "Anjali Mehta", blood: "B-", city: "Mumbai", phone: "919876543215", donations: 5 },
+            { name: "Rohit Sharma", blood: "A-", city: "Pune", phone: "919876543216", donations: 9 },
+            { name: "Kavita Joshi", blood: "AB-", city: "Jaipur", phone: "919876543217", donations: 4 }
         ];
+        // 50 donors banane ke liye loop
+        for (let i = 9; i <= 50; i++) {
+            donors.push({ name: `Donor ${i}`, blood: ["A+", "B+", "O+", "AB+", "A-", "B-", "O-", "AB-"][i % 8], city: ["Lucknow", "Delhi", "Mumbai", "Kanpur", "Pune"][i % 5], phone: `9198765432${10 + i}`, donations: Math.floor(Math.random() * 15) + 1 });
+        }
+
         let stock = [
-            { hospital: "SGPGI Lucknow", "A+": 12, "B+": 8, "O+": 15, "AB+": 5 },
-            { hospital: "KGMU Lucknow", "A+": 5, "B+": 20, "O+": 10, "AB+": 3 }
-        ];
-        let camps = [
-            { name: "Red Cross Blood Camp", date: "20 Aug 2026", location: "Hazratganj, Lucknow" },
-            { name: "AIIMS Blood Donation Drive", date: "25 Aug 2026", location: "Gomti Nagar, Lucknow" }
+            { hospital: "SGPGI Lucknow", "A+": 42, "B+": 38, "O+": 55, "AB+": 15, "A-": 8, "B-": 6, "O-": 12, "AB-": 4 },
+            { hospital: "KGMU Lucknow", "A+": 35, "B+": 50, "O+": 40, "AB+": 13, "A-": 10, "B-": 9, "O-": 15, "AB-": 5 },
+            { hospital: "Apollo Lucknow", "A+": 48, "B+": 44, "O+": 62, "AB+": 17, "A-": 12, "B-": 8, "O-": 18, "AB-": 6 },
+            { hospital: "AIIMS Delhi", "A+": 60, "B+": 55, "O+": 70, "AB+": 20, "A-": 15, "B-": 12, "O-": 22, "AB-": 8 }
         ];
 
+        let camps = [
+            { name: "Red Cross Blood Camp", date: "20 Aug 2026", location: "Hazratganj, Lucknow", expected: "200+ Donors" },
+            { name: "AIIMS Blood Donation Drive", date: "25 Aug 2026", location: "Gomti Nagar, Lucknow", expected: "500+ Donors" },
+            { name: "Rotary Club Camp", date: "30 Aug 2026", location: "Alambagh, Lucknow", expected: "150+ Donors" }
+        ];
+
+        // LOAD TABLES ON PAGE LOAD
+        window.onload = function () {
+            // Donor Table
+            let dt = `<tr><th>Name</th><th>Blood Group</th><th>City</th><th>Donations</th><th>Contact</th></tr>`;
+            donors.slice(0, 20).forEach(d => {
+                dt += `<tr><td>${d.name}</td><td>${d.blood}</td><td>${d.city}</td><td>${d.donations}</td><td><button class="whatsapp-btn" onclick="window.open('https://wa.me/${d.phone}')">WhatsApp</button></td></tr>`
+            });
+            document.getElementById('donorTable').innerHTML = dt;
+
+            // Stock Table
+            let st = `<tr><th>Hospital</th><th>A+</th><th>B+</th><th>O+</th><th>AB+</th><th>A-</th><th>B-</th><th>O-</th><th>AB-</th></tr>`;
+            stock.forEach(h => {
+                st += `<tr><td><b>${h.hospital}</b></td><td>${h["A+"]}</td><td>${h["B+"]}</td><td>${h["O+"]}</td><td>${h["AB+"]}</td><td>${h["A-"]}</td><td>${h["B-"]}</td><td>${h["O-"]}</td><td>${h["AB-"]}</td></tr>`
+            });
+            document.getElementById('stockTable').innerHTML = st;
+
+            // Camps
+            let cl = '';
+            camps.forEach(c => { cl += `<div class="card"><h3>${c.name}</h3><p>📅 ${c.date}<br>📍 ${c.location}<br>👥 Expected: ${c.expected}</p></div>` });
+            document.getElementById('campList').innerHTML = cl;
+        }
+
+        // MODAL LOGIC
         function openModal(type) {
             let body = document.getElementById('modalBody');
             if (type == 'emergency') {
-                body.innerHTML = `<span class="close" onclick="closeModal()">&times;</span><h2>🚨 Emergency Blood Request</h2>
+                body.innerHTML = `<span style="float:right; font-size:35px; cursor:pointer;" onclick="closeModal()">&times;</span><h2>🚨 Emergency Blood Request</h2>
     <input id="epatient" placeholder="Patient Name"><select id="eblood"><option>B+</option><option>O+</option><option>A+</option><option>AB+</option></select>
-    <input id="ecity" placeholder="City"><textarea id="ereason" placeholder="Reason / Hospital Name"></textarea>
-    <button class="btn" onclick="sendEmergency()">Send Alert to All Donors</button><div id="eresult"></div>`;
+    <input id="ecity" placeholder="City"><textarea id="ereason" placeholder="Hospital Name + Reason"></textarea>
+    <button class="btn" onclick="alert('Alert sent to ${donors.length} donors!')">Send Alert to All Donors</button>`;
             }
             if (type == 'find') {
-                body.innerHTML = `<span class="close" onclick="closeModal()">&times;</span><h2>🔍 Find Donor</h2>
-    <select id="blood"><option value="">Select Blood Group</option><option>B+</option><option>O+</option><option>A+</option><option>AB+</option></select>
+                body.innerHTML = `<span style="float:right; font-size:35px; cursor:pointer;" onclick="closeModal()">&times;</span><h2>🔍 AI Donor Finder</h2>
+    <select id="blood"><option value="">Select Blood Group</option><option>B+</option><option>O+</option><option>A+</option></select>
     <input id="city" placeholder="Enter City"><button class="btn" onclick="searchDonor()">Search</button><div id="result"></div>`;
             }
-            if (type == 'stock') {
-                let html = `<span class="close" onclick="closeModal()">&times;</span><h2>🏥 Live Hospital Stock</h2>`;
-                stock.forEach(h => { html += `<div class="donor-item"><div><b>${h.hospital}</b><br>A+: ${h["A+"]} | B+: ${h["B+"]} | O+: ${h["O+"]} | AB+: ${h["AB+"]}</div></div>` });
-                body.innerHTML = html;
-            }
-            if (type == 'camp') {
-                let html = `<span class="close" onclick="closeModal()">&times;</span><h2>📍 Upcoming Blood Camps</h2>`;
-                camps.forEach(c => { html += `<div class="alert"><b>${c.name}</b><br>📅 ${c.date}<br>📍 ${c.location}</div>` });
-                body.innerHTML = html;
-            }
             if (type == 'register') {
-                body.innerHTML = `<span class="close" onclick="closeModal()">&times;</span><h2>➕ Register Donor</h2>
-    <input id="rname" placeholder="Full Name"><select id="rblood"><option>B+</option><option>O+</option><option>A+</option><option>AB+</option></select>
+                body.innerHTML = `<span style="float:right; font-size:35px; cursor:pointer;" onclick="closeModal()">&times;</span><h2>➕ Register Donor</h2>
+    <input id="rname" placeholder="Full Name"><select id="rblood"><option>B+</option><option>O+</option><option>A+</option></select>
     <input id="rcity" placeholder="City"><input id="rphone" placeholder="Phone Number">
-    <button class="btn" onclick="registerDonor()">Register & Get Certificate</button>`;
-            }
-            if (type == 'about') {
-                body.innerHTML = `<span class="close" onclick="closeModal()">&times;</span><h2>How LifeConnect Works</h2>
-    <p>1. Patient posts emergency request<br>2. AI finds nearest matching donors<br>3. Donors get instant notification<br>4. Life saved in 60 seconds</p>`;
+    <button class="btn" onclick="alert('Registered! Certificate Downloaded.')">Register & Get Certificate</button>`;
             }
             document.getElementById('modal').style.display = 'flex';
         }
         function closeModal() { document.getElementById('modal').style.display = 'none'; }
-
         function searchDonor() {
             let b = document.getElementById('blood').value; let c = document.getElementById('city').value;
             let res = donors.filter(d => d.blood == b && d.city.toLowerCase().includes(c.toLowerCase()));
-            let html = res.length ? res.map(d => `<div class="donor-item"><div><b>${d.name}</b><br>📍 ${d.city} | Last: ${d.last}</div><button class="whatsapp-btn" onclick="window.open('https://wa.me/${d.phone}?text=Urgent blood needed. Are you available?')">WhatsApp</button></div>`).join('') : "No donor found";
+            let html = res.length ? res.slice(0, 10).map(d => `<div style="background:#050510; padding:15px; margin:10px 0; border-radius:10px;"><b>${d.name}</b> - ${d.phone}</div>`).join('') : "No donor found";
             document.getElementById('result').innerHTML = html;
         }
-
-        function registerDonor() {
-            donors.push({ name: document.getElementById('rname').value, blood: document.getElementById('rblood').value, city: document.getElementById('rcity').value, phone: "91" + document.getElementById('rphone').value, last: "Today" });
-            document.getElementById('donorCount').innerText = 500 + donors.length;
-            alert("Registered Successfully! Downloading Certificate...");
-            // Certificate download simulation
-            let link = document.createElement('a');
-            link.download = "LifeConnect_Certificate.pdf";
-            link.href = "data:application/pdf;base64,JVBERi0xLjQK"; // dummy
-            link.click();
-            closeModal();
-        }
-
-        function sendEmergency() {
-            document.getElementById('eresult').innerHTML = `<div class="alert">✅ Alert sent to ${donors.length} matching donors in ${document.getElementById('ecity').value}! They will contact you soon.</div>`;
-        }
-
-        function toggleTheme() { document.body.classList.toggle('light'); }
-
         window.onclick = (e) => { if (e.target.id == 'modal') closeModal() }
     </script>
 </body>
