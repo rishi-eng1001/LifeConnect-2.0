@@ -1,15 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>LifeConnect</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeConnect 2.0 - Blood Donation Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff4b5c 0%, #8B0000 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin: 20px 0 40px;
+            opacity: 0.9;
+        }
+
+        .cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            color: #8B0000;
+            padding: 50px 40px;
+            border-radius: 24px;
+            width: 320px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+        }
+
+        .card .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            opacity: 0.8;
+        }
+
+        .btn {
+            background: white;
+            color: #8B0000;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Welcome to LifeConnect 🩸</h1>
-    <a href="/register">Donor Register</a> |
-    <a href="/find">Find Donor</a> |
-    <a href="/hospital-stock">Check Hospital Stock</a>
+
+    <header>
+        <div class="logo">🩸 LifeConnect 2.0</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Find Donor</a>
+            <a href="#">Hospitals</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Donate Blood. <br>Save Lives.</h1>
+        <p>Connecting 500+ Donors with 23+ Hospitals in Real-Time</p>
+
+        <div class="cards">
+            <div class="card" onclick="window.location.href='/donor'">
+                <div class="icon">❤️</div>
+                <h2>FIND DONOR</h2>
+                <p>Search by Blood Group & City. Get donor in 2 minutes.</p>
+            </div>
+
+            <div class="card" onclick="window.location.href='/stock'">
+                <div class="icon">🏥</div>
+                <h2>CHECK STOCK</h2>
+                <p>Live Blood Unit availability in nearby hospitals.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 LifeConnect | Hackathon SAH 3.0 | Made with ❤️
+    </footer>
+
 </body>
 
 </html>
