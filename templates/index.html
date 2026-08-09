@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>RAKTH SETU | Pan-India Blood Network</title>
+    <title>RAKTH SETU ULTRA | Pan-India Blood Network</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -15,16 +15,14 @@
 
         body {
             background: #f8f9fa;
-            color: #222;
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* NAVBAR */
         nav {
             background: white;
             padding: 15px 0;
@@ -32,77 +30,55 @@
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        nav.container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
             font-size: 26px;
             font-weight: 800;
             color: #d32f2f;
         }
 
-        .logo span {
-            font-size: 12px;
-            color: #666;
-            font-weight: 400;
-            display: block;
-        }
-
-        .nav-links a {
-            margin-left: 25px;
-            text-decoration: none;
-            color: #555;
-            font-weight: 600;
-        }
-
-        .btn-red {
-            background: #d32f2f;
-            color: white;
-            padding: 10px 20px;
+        .nav-btn {
+            margin-left: 15px;
+            padding: 10px 18px;
             border-radius: 8px;
             border: none;
             font-weight: 700;
             cursor: pointer;
         }
 
-        /* HERO */
+        .btn-red {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .btn-green {
+            background: #2e7d32;
+            color: white;
+        }
+
         .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            padding: 80px 0;
-        }
-
-        .hero h1 {
-            font-size: 55px;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            color: #d32f2f;
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(90deg, #d32f2f, #b71c1c);
+            color: white;
         }
 
         .search-box {
             background: white;
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-top: -50px;
         }
 
-        .search-grid {
+        .grid-4 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
-            margin: 20px 0;
         }
 
         input,
@@ -114,71 +90,50 @@
             font-size: 15px;
         }
 
-        label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #666;
-        }
-
-        /* STATS */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            text-align: center;
-            padding: 60px 0;
-        }
-
-        .stat h2 {
-            font-size: 45px;
-            color: #d32f2f;
-        }
-
-        /* URGENT REQUESTS */
-        .request-card {
+        .card {
             background: white;
             padding: 20px;
             border-radius: 12px;
-            border-left: 5px solid #d32f2f;
             margin: 15px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         .badge {
-            background: #ffebee;
-            color: #d32f2f;
-            padding: 5px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 700;
         }
 
-        /* FEATURES */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            padding: 80px 0;
+        .badge-green {
+            background: #e8f5e9;
+            color: #2e7d32;
         }
 
-        .feature {
+        .badge-red {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .tab {
+            padding: 12px 20px;
             background: white;
-            padding: 30px;
-            border-radius: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
         }
 
-        .cta {
-            background: linear-gradient(90deg, #d32f2f, #b71c1c);
+        .tab.active {
+            background: #d32f2f;
             color: white;
-            text-align: center;
-            padding: 80px 20px;
-            border-radius: 16px;
-            margin: 60px 0;
         }
 
-        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -197,243 +152,165 @@
             padding: 40px;
             border-radius: 16px;
             width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
+            max-width: 700px;
         }
     </style>
 </head>
 
 <body>
 
-    <nav>
-        <div class="container">
-            <div class="logo">🩸 RAKTH SETU <span>BLOOD NETWORK</span></div>
-            <div class="nav-links">
-                <a href="#">Home</a><a href="#find">Find Blood</a><a href="#requests">Blood Requests</a><a
-                    href="#donor">Become a Donor</a>
-                <button class="btn-red" onclick="openModal('register')">Register</button>
-            </div>
+    <nav class="container">
+        <div class="logo">🩸 RAKTH SETU ULTRA</div>
+        <div>
+            <button class="nav-btn btn-green" onclick="openModal('request')">🚨 Post Request</button>
+            <button class="nav-btn btn-red" onclick="openModal('admin')">🏥 Hospital Login</button>
         </div>
     </nav>
 
-    <!-- HERO + SEARCH -->
-    <section class="container hero">
-        <div>
-            <p
-                style="color:#d32f2f; font-weight:600; background:#ffebee; display:inline-block; padding:6px 14px; border-radius:20px;">
-                ❤️ Nationwide Blood Network</p>
-            <h1>The bridge between <span>donors and lives</span> saved</h1>
-            <p style="margin:20px 0; font-size:18px; color:#666;">RAKTH SETU connects blood donors, patients, hospitals,
-                and blood banks across India. Find blood fast, register as a donor, request blood, and get verified
-                digital certificates.</p>
-            <button class="btn-red" onclick="document.getElementById('find').scrollIntoView()">🔍 Find Blood
-                Now</button>
-            <button
-                style="background:white; color:#d32f2f; border:2px solid #d32f2f; padding:10px 20px; border-radius:8px; margin-left:10px; font-weight:700;"
-                onclick="openModal('register')">🩸 Become a Donor</button>
-        </div>
-        <div class="search-box" id="find">
-            <h3>🩸 Find Blood</h3>
-            <p>Search nearby hospitals & blood banks</p>
-            <div class="search-grid">
-                <div><label>BLOOD GROUP</label>
-                    <select id="blood">
-                        <option value="">Any Group</option>
-                        <option>A+</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B-</option>
-                        <option>O+</option>
-                        <option>O-</option>
-                        <option>AB+</option>
-                        <option>AB-</option>
-                    </select>
-                </div>
-                <div><label>COMPONENT</label>
-                    <select id="component">
-                        <option>Whole Blood</option>
-                        <option>Plasma</option>
-                        <option>Platelets</option>
-                        <option>RBC</option>
-                    </select>
-                </div>
-                <div><label>STATE</label>
-                    <select id="state" onchange="loadCities()">
-                        <option value="">All States</option>
-                    </select>
-                </div>
-                <div><label>CITY</label>
-                    <select id="city">
-                        <option value="">Select City</option>
-                    </select>
-                </div>
-            </div>
-            <button class="btn-red" style="width:100%" onclick="searchBlood()">🔍 Search Blood Availability</button>
-            <p style="font-size:12px; color:#999; margin-top:10px;">ℹ️ Blood availability is reported stock. Always
-                confirm with the hospital before visiting.</p>
-        </div>
+    <section class="hero">
+        <h1 style="font-size:50px;">Find Donor. Find Blood. Save Life.</h1>
+        <p>10,000+ Donors | 2000+ Hospitals | Blood Camps | 24x7 Support</p>
     </section>
 
-    <!-- STATS -->
-    <section class="container stats">
-        <div class="stat">
-            <h2 id="donorCount">15,240</h2>
-            <p>Registered Donors</p>
-        </div>
-        <div class="stat">
-            <h2>680</h2>
-            <p>Partner Hospitals</p>
-        </div>
-        <div class="stat">
-            <h2>4,500</h2>
-            <p>Units Available</p>
-        </div>
-        <div class="stat">
-            <h2>11,200</h2>
-            <p>Certificates Issued</p>
-        </div>
-    </section>
-
-    <!-- URGENT REQUESTS -->
-    <section class="container" id="requests">
-        <h2>🚨 Blood Needed Now</h2>
-        <p style="color:#666;">Verified urgent requests from hospitals across India</p>
-        <div id="requestList"></div>
-    </section>
-
-    <!-- FEATURES -->
     <section class="container">
-        <h2 style="text-align:center; font-size:40px;">A complete blood ecosystem</h2>
-        <p style="text-align:center; color:#666;">Everything needed to connect donors, patients, and healthcare
-            providers</p>
-        <div class="features">
-            <div class="feature">
-                <h3>🔍 Find Blood Fast</h3>
-                <p>Search by blood group, component, city, and state. See real-time reported availability.</p>
+        <div class="search-box">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('donor')">🔍 Find Donor</div>
+                <div class="tab" onclick="switchTab('hospital')">🏥 Hospital Stock</div>
+                <div class="tab" onclick="switchTab('camp')">📍 Blood Camps</div>
             </div>
-            <div class="feature">
-                <h3>🩸 Donor Registration</h3>
-                <p>Register as a donor with your blood group and location. Track donation history.</p>
-            </div>
-            <div class="feature">
-                <h3>🚨 Blood Request System</h3>
-                <p>Submit urgent blood requests with hospital details. Hospitals verify in real time.</p>
-            </div>
-            <div class="feature">
-                <h3>🏥 Hospital Management</h3>
-                <p>Hospitals manage inventory, update stock levels, and process blood requests.</p>
-            </div>
-            <div class="feature">
-                <h3>📜 Digital Certificates</h3>
-                <p>Verified donations generate digital certificates with QR verification.</p>
-            </div>
-            <div class="feature">
-                <h3>🔒 Secure & Private</h3>
-                <p>Role-based access control protects donor and patient information.</p>
+            <div class="grid-4">
+                <div><label>STATE</label><select id="state" onchange="loadCities()">
+                        <option>All States</option>
+                    </select></div>
+                <div><label>CITY</label><select id="city">
+                        <option>All Cities</option>
+                    </select></div>
+                <div><label>BLOOD GROUP</label><select id="blood">
+                        <option>Any</option>
+                        <option>A+</option>
+                        <option>B+</option>
+                        <option>O+</option>
+                        <option>AB+</option>
+                        <option>A-</option>
+                        <option>B-</option>
+                        <option>O-</option>
+                        <option>AB-</option>
+                    </select></div>
+                <div><button class="btn-red" style="height:100%" onclick="search()">Search Now</button></div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="container cta">
-        <h2 style="font-size:45px;">Your blood can save a life today</h2>
-        <p>Join thousands of donors across India. Register, donate, and receive a verified digital certificate.</p>
-        <button
-            style="background:white; color:#d32f2f; padding:14px 28px; border-radius:10px; border:none; font-weight:800; margin:10px;">🩸
-            Register as Donor</button>
-        <button
-            style="background:transparent; color:white; padding:14px 28px; border-radius:10px; border:2px solid white; font-weight:800; margin:10px;">❤️
-            Request Blood</button>
-    </section>
+    <section class="container" id="results"></section>
+    <section class="container" id="requests"></section>
 
     <div class="modal" id="modal">
         <div class="modal-content" id="modalBody"></div>
     </div>
 
     <script>
-        // 1. STATES + CITIES DATA
+        // 1. DATA
         const states = {
-            "Uttar Pradesh": ["Lucknow", "Kanpur", "Noida", "Gonda", "Varanasi", "Agra", "Prayagraj"],
-            "Delhi": ["New Delhi", "Dwarka", "Rohini", "Saket"],
-            "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
-            "Karnataka": ["Bangalore", "Mysore", "Hubli"],
-            "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
-            "West Bengal": ["Kolkata", "Siliguri"],
-            "Gujarat": ["Ahmedabad", "Surat", "Vadodara"]
+            "Uttar Pradesh": ["Lucknow", "Kanpur", "Noida", "Gonda", "Varanasi", "Agra"],
+            "Delhi": ["New Delhi", "Dwarka", "Rohini"],
+            "Maharashtra": ["Mumbai", "Pune", "Nagpur"],
+            "Karnataka": ["Bangalore", "Mysore"],
+            "Tamil Nadu": ["Chennai", "Coimbatore"]
         };
         for (let s in states) document.getElementById('state').innerHTML += `<option>${s}</option>`;
         function loadCities() {
             let s = document.getElementById('state').value;
             let citySel = document.getElementById('city');
-            citySel.innerHTML = '<option value="">Select City</option>';
+            citySel.innerHTML = '<option>All Cities</option>';
             if (states[s]) states[s].forEach(c => citySel.innerHTML += `<option>${c}</option>`);
         }
 
-        // 2. 500+ HOSPITALS + STOCK DATA
-        let hospitals = [];
-        for (let s in states) {
-            states[s].forEach(city => {
-                hospitals.push({ name: `${city} Civil Hospital`, city, state: s, stock: randomStock() });
-                hospitals.push({ name: `${city} Medical College`, city, state: s, stock: randomStock() });
-                hospitals.push({ name: `Apollo ${city}`, city, state: s, stock: randomStock() });
-                hospitals.push({ name: `Fortis ${city}`, city, state: s, stock: randomStock() });
-            });
-        }
-        function randomStock() {
-            return { "A+": rand(), "A-": rand(), "B+": rand(), "B-": rand(), "O+": rand(), "O-": rand(), "AB+": rand(), "AB-": rand() };
-        }
-        function rand() { return Math.floor(Math.random() * 30) + 5; }
-
-        // 3. 200+ DONORS DATA
+        // 2. 10,000 DONORS
         let donors = [];
-        const names = ["Rahul", "Priya", "Aman", "Sneha", "Vikram", "Anjali", "Rohit", "Kavita", "Arjun", "Pooja"];
-        for (let i = 0; i < 200; i++) {
-            let s = Object.keys(states)[i % 7];
+        const names = ["Aman", "Priya", "Rahul", "Sneha", "Vikram", "Anjali", "Rohit", "Kavita"];
+        for (let i = 0; i < 10000; i++) {
+            let sKeys = Object.keys(states);
+            let s = sKeys[i % sKeys.length];
             let c = states[s][i % states[s].length];
-            donors.push({ name: `${names[i % 10]} ${i}`, blood: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"][i % 8], city: c, state: s, phone: `91 98765 43${100 + i}` });
+            donors.push({ name: `${names[i % 8]} ${i}`, blood: ["A+", "B+", "O+", "AB+", "A-", "B-", "O-", "AB-"][i % 8], city: c, state: s, phone: `919876543${i % 1000}`, distance: Math.floor(Math.random() * 20) + 1, verified: i % 3 == 0 });
         }
 
-        // 4. URGENT REQUESTS
-        let requests = [
-            { blood: "O-", hospital: "AIIMS Delhi", city: "New Delhi", state: "Delhi", units: 2, type: "Whole Blood", status: "Critical" },
-            { blood: "B+", hospital: "Tata Memorial Hospital", city: "Mumbai", state: "Maharashtra", units: 1, type: "Platelets", status: "Urgent" },
-            { blood: "AB+", hospital: "Apollo Hospitals", city: "Chennai", state: "Tamil Nadu", units: 3, type: "Whole Blood", status: "Critical" }
+        // 3. BLOOD CAMPS DATA
+        let camps = [
+            { name: "Mega Blood Donation Camp", city: "Lucknow", state: "Uttar Pradesh", date: "15 Aug 2026", org: "Red Cross" },
+            { name: "Youth Blood Drive", city: "Mumbai", state: "Maharashtra", date: "20 Aug 2026", org: "Rotary Club" },
+            { name: "College Donation Camp", city: "Bangalore", state: "Karnataka", date: "25 Aug 2026", org: "NSS" }
         ];
-        let reqHTML = '';
-        requests.forEach(r => {
-            reqHTML += `<div class="request-card">
-    <div><span style="background:#d32f2f; color:white; padding:10px 15px; border-radius:8px; font-weight:800;">${r.blood}</span>
-    <b style="margin-left:15px;">${r.hospital}</b><br><span style="color:#666;">📍 ${r.city}, ${r.state}</span><br><small>${r.type}</small></div>
-    <div><span class="badge">${r.status}</span><br><b>${r.units} units needed</b></div>
-  </div>`
-        });
-        document.getElementById('requestList').innerHTML = reqHTML;
 
-        // 5. SEARCH FUNCTION
-        function searchBlood() {
+        // 4. REQUEST BOARD
+        let requests = [
+            { blood: "O-", patient: "Ravi Kumar", hospital: "AIIMS Delhi", city: "New Delhi", units: 2, contact: "9876543210" }
+        ];
+        function loadRequests() {
+            let html = `<h2>🚨 Urgent Blood Requests</h2>`;
+            requests.forEach(r => {
+                html += `<div class="card"><b style="color:#d32f2f;">${r.blood}</b> needed for ${r.patient} at ${r.hospital}, ${r.city} <span class="badge badge-red">${r.units} Units</span><br>
+    <button class="btn-green" onclick="alert('WhatsApp sent to donor group')">📲 Notify Donors via WhatsApp</button></div>`;
+            });
+            document.getElementById('requests').innerHTML = html;
+        }
+        loadRequests();
+
+        // 5. TABS + SEARCH
+        let currentTab = 'donor';
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            search();
+        }
+
+        function search() {
             let b = document.getElementById('blood').value;
             let city = document.getElementById('city').value;
             let state = document.getElementById('state').value;
+            let html = '';
 
-            let filteredHosp = hospitals.filter(h => (!city || h.city == city) && (!state || h.state == state));
-
-            let html = `<span style="float:right; font-size:30px; cursor:pointer;" onclick="closeModal()">&times;</span><h2>Search Results - ${city || state || 'All India'}</h2>`;
-            filteredHosp.slice(0, 15).forEach(h => {
-                html += `<div style="background:#f5f5f5; padding:15px; margin:10px 0; border-radius:10px;">
-      <b>${h.name}</b> - ${h.city}, ${h.state}<br>`;
-                if (b) html += `<b>${b}:</b> ${h.stock[b]} units available`;
-                else html += `A+:${h.stock["A+"]} B+:${h.stock["B+"]} O+:${h.stock["O+"]} AB+:${h.stock["AB+"]}`;
-                html += `</div>`;
-            });
-            document.getElementById('modalBody').innerHTML = html;
-            document.getElementById('modal').style.display = 'flex';
+            if (currentTab == 'donor') {
+                let filtered = donors.filter(d => (b == "Any" || d.blood == b) && (city == "All Cities" || d.city == city) && (state == "All States" || d.state == state)).slice(0, 20);
+                html = `<h2>Found ${filtered.length}+ Donors</h2>`;
+                filtered.forEach(d => {
+                    html += `<div class="card"><div style="display:flex; justify-content:space-between;">
+        <div><b>${d.name}</b> ${d.verified ? '<span class="badge badge-green">Verified</span>' : ''}<br>
+        Blood: <b style="color:#d32f2f;">${d.blood}</b> | 📍 ${d.city}, ${d.state} | ${d.distance}km away</div>
+        <div><button class="btn-red" onclick="sendWhatsApp('${d.phone}','${d.blood}')">💬 WhatsApp</button></div>
+      </div></div>`;
+                });
+            }
+            if (currentTab == 'camp') {
+                html = `<h2>📍 Upcoming Blood Camps</h2>`;
+                camps.filter(c => (city == "All Cities" || c.city == city) && (state == "All States" || c.state == state)).forEach(c => {
+                    html += `<div class="card"><b>${c.name}</b><br>📍 ${c.city}, ${c.state} | 📅 ${c.date} | Organized by: ${c.org}</div>`;
+                });
+            }
+            document.getElementById('results').innerHTML = html;
         }
 
+        // 6. WHATSAPP NOTIFICATION FUNCTION
+        function sendWhatsApp(phone, blood) {
+            let msg = `Urgent: ${blood} blood needed near you. Can you help? - RAKTH SETU`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+        }
+
+        // 7. MODALS
         function openModal(type) {
-            document.getElementById('modalBody').innerHTML = `<span style="float:right; font-size:30px; cursor:pointer;" onclick="closeModal()">&times;</span>
-  <h2>Register as Donor - RAKTH SETU</h2><input placeholder="Full Name"><select>${Object.keys(states).map(s => `<option>${s}</option>`)}</select>
-  <input placeholder="City"><select><option>A+</option><option>B+</option><option>O+</option><option>AB+</option></select><button class="btn-red">Register & Get Certificate</button>`;
+            if (type == 'request') {
+                document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right; font-size:30px; cursor:pointer;">&times;</span>
+    <h2>Post Blood Request</h2><input placeholder="Patient Name"><input placeholder="Hospital"><select>${Object.keys(states).map(s => `<option>${s}</option>`)}</select>
+    <select><option>A+</option><option>B+</option><option>O-</option></select><input placeholder="Units Needed">
+    <button class="btn-red" onclick="alert('Request Posted + 200 Donors Notified')">Submit & Alert Donors</button>`;
+            }
+            if (type == 'admin') {
+                document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right; font-size:30px; cursor:pointer;">&times;</span>
+    <h2>Hospital Admin Panel</h2><input placeholder="Hospital ID"><input type="password" placeholder="Password">
+    <button class="btn-red">Login & Update Stock</button>`;
+            }
             document.getElementById('modal').style.display = 'flex';
         }
         function closeModal() { document.getElementById('modal').style.display = 'none'; }
