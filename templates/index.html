@@ -75,6 +75,30 @@
             cursor: pointer;
         }
 
+        /* NEW: URGENT TICKER */
+        .urgent {
+            background: #ffebee;
+            color: #b71c1c;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* NEW: TRUST BADGES */
+        .trust {
+            display: flex;
+            justify-content: space-around;
+            padding: 25px;
+            background: #f7fafc;
+            border-radius: 12px;
+            margin: 30px 0;
+            font-weight: 600;
+            flex-wrap: wrap;
+            gap: 15px;
+            text-align: center;
+        }
+
         .hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -220,6 +244,24 @@
             padding: 30px;
             text-align: center;
         }
+
+        @media(max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .request-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -234,6 +276,10 @@
             <button class="btn-red" onclick="openModal('donor')">Register</button>
         </div>
     </nav>
+
+    <!-- NEW: URGENT TICKER ADDED -->
+    <div class="urgent">🚨 URGENT: O- blood needed at KGMU Lucknow | B+ needed at SGPGI | A+ needed at Civil Hospital
+    </div>
 
     <section class="container hero">
         <div>
@@ -283,6 +329,15 @@
             <button class="btn-red" style="width:100%" onclick="searchBlood()">🔍 Search Blood Availability</button>
             <p style="font-size:11px; color:#999; margin-top:10px;">ℹ️ Blood availability is reported stock. Always
                 confirm with hospital.</p>
+        </div>
+    </section>
+
+    <!-- NEW: TRUST BADGES ADDED -->
+    <section class="container">
+        <div class="trust">
+            <div>✅ QR Verified Certificates</div>
+            <div>⚡ WhatsApp Instant Alert</div>
+            <div>🔒 100% Free & Secure</div>
         </div>
     </section>
 
