@@ -100,7 +100,6 @@
             font-size: 18px;
         }
 
-        /* NEW: URGENT TICKER */
         .urgent {
             background: #ffebee;
             color: #b71c1c;
@@ -151,7 +150,6 @@
             color: var(--text);
         }
 
-        /* NEW: TRUST BADGES */
         .trust {
             display: flex;
             justify-content: space-around;
@@ -185,7 +183,6 @@
             font-weight: 800;
         }
 
-        /* NEW: CITY MAP BUTTONS */
         .map-section {
             padding: 40px 0;
             text-align: center;
@@ -290,6 +287,7 @@
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
         .certificate {
@@ -314,6 +312,7 @@
             .features {
                 grid-template-columns: 1fr;
             }
+        }
     </style>
 </head>
 
@@ -322,14 +321,15 @@
     <nav class="container">
         <div class="logo">🩸 RAKTH SETU <span>BLOOD NETWORK</span></div>
         <div class="nav-links">
-            <a href="#">Home</a><a href="#find">Find Blood</a><a href="#requests">Blood Requests</a>
+            <a href="#">Home</a><a href="#find">Find Blood</a><a href="#requests">Blood Requests</a><a href="#"
+                onclick="openModal('verify')">Verify Certificate</a>
             <button class="theme-btn" onclick="toggleTheme()">🌙</button>
             <button class="btn-red" onclick="openModal('donor')">Register</button>
         </div>
     </nav>
 
-    <!-- NEW: URGENT TICKER -->
-    <div class="urgent">🚨 LIVE: O- needed at KGMU Lucknow | B+ needed at SGPGI | AB+ needed at AIIMS Delhi</div>
+    <div class="urgent">🚨 LIVE: O- needed at KGMU Lucknow | B+ needed at SGPGI Lucknow | AB+ needed at AIIMS Delhi
+    </div>
 
     <section class="container hero">
         <div>
@@ -355,10 +355,14 @@
             <div class="search-grid">
                 <div><label style="font-size:12px">BLOOD GROUP</label><select id="blood">
                         <option value="">Any Group</option>
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
                         <option>O+</option>
                         <option>O-</option>
-                        <option>A+</option>
-                        <option>B+</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
                     </select></div>
                 <div><label style="font-size:12px">STATE</label><select id="state" onchange="loadCities()">
                         <option value="">All States</option>
@@ -369,13 +373,13 @@
                 <div><label style="font-size:12px">COMPONENT</label><select id="component">
                         <option>Whole Blood</option>
                         <option>Plasma</option>
+                        <option>Platelets</option>
                     </select></div>
             </div>
             <button class="btn-red" style="width:100%" onclick="searchBlood()">🔍 Search Blood Availability</button>
         </div>
     </section>
 
-    <!-- NEW: TRUST BADGES -->
     <section class="container">
         <div class="trust">
             <div>✅ QR Verified Certificates</div>
@@ -407,7 +411,6 @@
         </div>
     </section>
 
-    <!-- NEW: CITY MAP SECTION -->
     <section class="container map-section">
         <h2>📍 Find Donors by City</h2>
         <p>Click a city to see available donors instantly</p>
@@ -442,14 +445,33 @@
             <h3>Bulk WhatsApp Alert</h3>
             <p>Notify all donors in 1 click.</p>
         </div>
+        <div class="feature">
+            <div class="feature-icon" style="background:#c6f6d5">🏥</div>
+            <h3>Hospital Management</h3>
+            <p>Hospitals manage inventory and stock.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon" style="background:#e9d8fd">🏆</div>
+            <h3>Digital Certificates</h3>
+            <p>Verified donations generate certificates.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon" style="background:#e2e8f0">🔒</div>
+            <h3>Secure & Private</h3>
+            <p>Role-based access control protects data.</p>
+        </div>
     </section>
 
     <section class="cta">
         <div style="font-size:40px">🩸</div>
         <h2 style="font-size:32px;">Your blood can save a life today</h2>
+        <p>Join thousands of donors across India. Register and get verified certificate.</p>
         <button
             style="background:white; color:var(--red); padding:10px 20px; border-radius:6px; border:none; margin:10px;"
             onclick="openModal('donor')">🩸 Register as Donor</button>
+        <button
+            style="background:transparent; color:white; padding:10px 20px; border-radius:6px; border:1px solid white; margin:10px;"
+            onclick="openModal('request')">❤️ Request Blood</button>
     </section>
 
     <section class="container" id="results"></section>
@@ -464,20 +486,24 @@
             document.querySelector('.theme-btn').innerText = document.body.dataset.theme == 'dark' ? '☀️' : '🌙';
         }
 
+        // 1. ALL INDIA DATA
         const states = {
-            "All States": ["All Cities"], "Uttar Pradesh": ["Lucknow", "Kanpur", "Noida"], "Delhi": ["New Delhi"],
-            "Maharashtra": ["Mumbai", "Pune"], "Karnataka": ["Bangalore"]
+            "All States": ["All Cities"], "Andhra Pradesh": ["Visakhapatnam", "Vijayawada"], "Delhi": ["New Delhi", "Dwarka"],
+            "Gujarat": ["Ahmedabad", "Surat"], "Karnataka": ["Bangalore", "Mysore"], "Maharashtra": ["Mumbai", "Pune"],
+            "Rajasthan": ["Jaipur"], "Tamil Nadu": ["Chennai"], "Telangana": ["Hyderabad"], "Uttar Pradesh": ["Lucknow", "Kanpur", "Noida", "Varanasi"]
         };
         for (let s in states) document.getElementById('state').innerHTML += `<option value="${s}">${s}</option>`;
         function loadCities() { let s = document.getElementById('state').value; let c = document.getElementById('city'); c.innerHTML = '<option value="">All Cities</option>'; if (states[s]) states[s].forEach(x => c.innerHTML += `<option value="${x}">${x}</option>`) }
 
+        // 2. 500 DONORS DATA
         let donors = [];
         for (let i = 0; i < 500; i++) {
             let sKeys = Object.keys(states).filter(k => k != "All States");
             let s = sKeys[i % sKeys.length]; let c = states[s][i % states[s].length];
-            donors.push({ id: i, name: `Donor ${i}`, blood: ["A+", "B+", "O+", "O-"][i % 4], city: c, state: s, phone: `91${7000000000 + i}` });
+            donors.push({ id: i, name: `Donor ${i + 1}`, blood: ["A+", "B+", "O+", "O-", "AB+"][i % 5], city: c, state: s, phone: `91${7000000000 + i}` });
         }
 
+        // 3. URGENT REQUESTS
         let requests = [
             { blood: "O-", hospital: "KGMU Lucknow", city: "Lucknow", state: "Uttar Pradesh", units: 2 },
             { blood: "B+", hospital: "SGPGI Lucknow", city: "Lucknow", state: "Uttar Pradesh", units: 1 },
@@ -493,10 +519,10 @@
             <button class="btn-red" onclick="bulkWhatsApp('${r.blood}','${r.city}')">📢 Notify All</button></div>
           </div>`).join('');
 
-        // NEW: BULK WHATSAPP
+        // 4. BULK WHATSAPP NEW FEATURE
         function bulkWhatsApp(blood, city) {
             let cityDonors = donors.filter(d => d.blood == blood && d.city == city);
-            cityDonors.forEach(d => window.open(`https://wa.me/${d.phone}?text=URGENT: ${blood} blood needed in ${city}. -RAKTH SETU`, '_blank'));
+            cityDonors.slice(0, 5).forEach(d => window.open(`https://wa.me/${d.phone}?text=URGENT: ${blood} blood needed in ${city}. -RAKTH SETU`, '_blank'));
             alert(`${cityDonors.length} donors ko WhatsApp bheja gaya!`);
         }
 
@@ -506,27 +532,48 @@
             document.getElementById('results').scrollIntoView();
         }
 
+        // 5. SEARCH FUNCTION
         function searchBlood() {
-            let b = document.getElementById('blood').value; let city = document.getElementById('city').value;
-            let filteredDonors = donors.filter(d => (!b || d.blood == b) && (!city || d.city == city)).slice(0, 10);
-            let html = `<h2 style="margin:40px 0">🔍 ${filteredDonors.length} Donors Found in ${city || 'All Cities'}</h2>`;
-            html += filteredDonors.map(d => `<div class="card"><div><b>${d.name}</b> - ${d.blood}<br>${d.city}</div><button class="btn-red" onclick="window.open('https://wa.me/${d.phone}')">WhatsApp</button></div>`).join('');
+            let b = document.getElementById('blood').value; let city = document.getElementById('city').value; let state = document.getElementById('state').value;
+            let filteredDonors = donors.filter(d => (!b || d.blood == b) && (!state || d.state == state) && (!city || d.city == city)).slice(0, 15);
+            let html = `<h2 style="margin:40px 0">🔍 ${filteredDonors.length} Donors Found in ${city || state || 'All India'}</h2>`;
+            html += filteredDonors.map(d => `<div class="card"><div><b>${d.name}</b> - ${d.blood}<br>${d.city}, ${d.state}</div><button class="btn-red" onclick="window.open('https://wa.me/${d.phone}')">WhatsApp</button></div>`).join('');
             document.getElementById('results').innerHTML = html;
         }
 
+        // 6. REGISTER + CERTIFICATE + VERIFY
         function openModal(type) {
             if (type == 'donor') {
                 document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px">&times;</span><h2>Register as Donor</h2>
-                <input id="regName" placeholder="Full Name" style="width:100%; padding:10px; margin:10px 0;"><select id="regBlood"><option>O+</option><option>O-</option></select>
+                <input id="regName" placeholder="Full Name" style="width:100%; padding:10px; margin:10px 0;">
+                <select id="regState" style="width:100%; padding:10px; margin:10px 0;">${Object.keys(states).filter(s => s != "All States").map(s => `<option>${s}</option>`)}</select>
+                <input id="regCity" placeholder="City" style="width:100%; padding:10px; margin:10px 0;">
+                <select id="regBlood" style="width:100%; padding:10px; margin:10px 0;"><option>O+</option><option>O-</option><option>A+</option><option>B+</option></select>
                 <button class="btn-red" style="width:100%;margin-top:15px" onclick="registerDonor()">Register & Get Certificate</button>`;
+            }
+            if (type == 'verify') {
+                document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px">&times;</span><h2>Verify Certificate</h2>
+                <input id="certId" placeholder="Enter Certificate ID RS123" style="width:100%; padding:10px; margin:10px 0;"><button class="btn-red" style="width:100%;margin-top:15px" onclick="verifyCert()">Verify</button><div id="verifyResult"></div>`;
+            }
+            if (type == 'request') {
+                document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px">&times;</span><h2>Request Blood</h2><p>Contact hospital directly for urgent requests.</p>`;
             }
             document.getElementById('modal').style.display = 'flex';
         }
+
         function registerDonor() {
-            let name = document.getElementById('regName').value; let id = donors.length + 1;
-            document.getElementById('donorStat').innerText = donors.length + 1 + '+';
+            let name = document.getElementById('regName').value; let state = document.getElementById('regState').value;
+            let city = document.getElementById('regCity').value; let blood = document.getElementById('regBlood').value;
+            let id = donors.length + 1; donors.push({ id, name, blood, city, state, phone: '919999' });
+            document.getElementById('donorStat').innerText = donors.length + '+';
             document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px">&times;</span>
-            <div class="certificate"><h2 style="color:var(--red)">RAKTH SETU</h2><h3>Certificate</h3><h2>${name}</h2><p><b>ID: RS${id}</b></p><button class="btn-red" onclick="window.print()">Download</button></div>`;
+            <div class="certificate"><h2 style="color:var(--red)">RAKTH SETU</h2><h3>Certificate of Appreciation</h3><p>Certified that</p><h2>${name}</h2><p>is registered as ${blood} donor</p><p><b>ID: RS${id}</b></p><button class="btn-red" onclick="window.print()">Download Certificate</button></div>`;
+        }
+
+        function verifyCert() {
+            let id = document.getElementById('certId').value;
+            let d = donors.find(x => 'RS' + x.id == id);
+            document.getElementById('verifyResult').innerHTML = d ? `<div class="card" style="background:#c6f6d5">✅ Valid Certificate<br>Name: ${d.name}<br>Blood: ${d.blood}</div>` : `<div class="card" style="background:#fed7d7">❌ Invalid ID</div>`;
         }
         function closeModal() { document.getElementById('modal').style.display = 'none'; }
     </script>
