@@ -244,6 +244,7 @@
             padding: 60px 20px;
         }
 
+        /* FIXED MODAL CSS */
         .modal {
             display: none;
             position: fixed;
@@ -251,7 +252,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -263,6 +264,7 @@
             border-radius: 12px;
             width: 90%;
             max-width: 500px;
+            position: relative;
         }
 
         .card {
@@ -292,7 +294,6 @@
             font-weight: 600;
         }
 
-        /* NEW: LEADERBOARD + TESTIMONIAL */
         .leaderboard {
             background: var(--card);
             padding: 30px;
@@ -313,6 +314,7 @@
             border-radius: 12px;
             margin: 10px;
             text-align: center;
+            min-width: 300px;
         }
 
         .ai-box {
@@ -411,7 +413,6 @@
         </div>
     </section>
 
-    <!-- NEW: ANIMATED STATS -->
     <section class="container stats">
         <div class="stat">
             <div style="font-size:30px">👥</div>
@@ -435,7 +436,6 @@
         </div>
     </section>
 
-    <!-- NEW: AI BLOOD MATCH -->
     <section class="container ai-box" id="ai">
         <h2>🎯 AI Blood Compatibility Checker</h2>
         <p>Select your blood group to see who you can donate to</p>
@@ -467,13 +467,11 @@
         <div class="request-grid" id="requestList"></div>
     </section>
 
-    <!-- NEW: LEADERBOARD -->
     <section class="container leaderboard">
         <h2>🏆 Top Donors This Month</h2>
         <div id="leaderboardList"></div>
     </section>
 
-    <!-- NEW: TESTIMONIALS -->
     <section class="container">
         <h2 style="text-align:center;">💬 What People Say</h2>
         <div style="display:flex; overflow-x:auto;">
@@ -528,6 +526,8 @@
     </section>
 
     <section class="container" id="results"></section>
+
+    <!-- FIXED: MODAL YAHI RAHEGA -->
     <div class="modal" id="modal">
         <div class="modal-content" id="modalBody"></div>
     </div>
@@ -596,32 +596,33 @@
             document.getElementById('results').innerHTML = html; document.getElementById('results').scrollIntoView();
         }
 
-        // NEW: AI COMPATIBILITY
         function checkCompatibility() {
             let b = document.getElementById('aiBlood').value;
             const map = { "O-": "Everyone", "O+": "O+, A+, B+, AB+", "A+": "A+, AB+", "B+": "B+, AB+", "AB+": "AB+ only" };
             document.getElementById('aiResult').innerText = `You can donate to: ${map[b]}`;
         }
 
-        // NEW: LEADERBOARD
         let topDonors = [...donors].sort((a, b) => b.donations - a.donations).slice(0, 5);
         document.getElementById('leaderboardList').innerHTML = topDonors.map((d, i) => `<div class="leader-item"><span>#${i + 1} ${d.name} - ${d.city}</span><span>${d.donations} Donations 🩸</span></div>`).join('');
 
-        // NEW: ANIMATED COUNTER
         const counters = document.querySelectorAll('.count');
         counters.forEach(counter => {
             const update = () => {
                 const target = +counter.getAttribute('data-target');
-                const c = +counter.innerText;
+                const c = +counter.innerText.replace(/,/g, '');
                 const inc = target / 100;
-                if (c < target) { counter.innerText = Math.ceil(c + inc); setTimeout(update, 20); } else { counter.innerText = target.toLocaleString() + '+'; }
+                if (c < target) { counter.innerText = Math.ceil(c + inc).toLocaleString(); setTimeout(update, 20); } else { counter.innerText = target.toLocaleString() + '+'; }
             }
             update();
         });
 
+        // FIXED: MODAL FUNCTION
         function openModal(type) {
+            document.getElementById('modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
             if (type == 'donor') {
-                document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px">&times;</span><h2>Register as Donor</h2>
+                document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px; position:absolute; right:20px; top:10px;">&times;</span><h2>Register as Donor</h2>
     <input id="regName" placeholder="Full Name" style="width:100%; padding:10px; margin:10px 0;">
     <input id="regPhone" placeholder="WhatsApp Number with 91" style="width:100%; padding:10px; margin:10px 0;" type="number">
     <select id="regState" style="width:100%; padding:10px; margin:10px 0;">${Object.keys(states).filter(s => s != "All States").map(s => `<option>${s}</option>`)}</select>
@@ -630,10 +631,9 @@
     <button class="btn-red" style="width:100%;margin-top:15px" onclick="registerDonor()">Register & Get Certificate</button>`;
             }
             if (type == 'verify') {
-                document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px">&times;</span><h2>Verify Certificate</h2>
+                document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px; position:absolute; right:20px; top:10px;">&times;</span><h2>Verify Certificate</h2>
     <input id="certId" placeholder="Enter Certificate ID RS123" style="width:100%; padding:10px; margin:10px 0;"><button class="btn-red" style="width:100%;margin-top:15px" onclick="verifyCert()">Verify</button><div id="verifyResult"></div>`;
             }
-            document.getElementById('modal').style.display = 'flex';
         }
 
         function registerDonor() {
@@ -642,10 +642,11 @@
             let state = document.getElementById('regState').value;
             let city = document.getElementById('regCity').value;
             let blood = document.getElementById('regBlood').value;
+            if (!name || !phone || !city) { alert("Please fill all fields"); return; }
             let id = donors.length + 1;
             donors.push({ id, name, blood, city, state, phone, donations: 1 });
-            document.getElementById('donorStat').innerText = donors.length + '+';
-            document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px">&times;</span>
+            document.querySelector('.count').innerText = (parseInt(document.querySelector('.count').innerText.replace(/,/g, '')) + 1).toLocaleString() + '+';
+            document.getElementById('modalBody').innerHTML = `<span onclick="closeModal()" style="float:right;cursor:pointer;font-size:24px; position:absolute; right:20px; top:10px;">&times;</span>
   <div class="certificate"><h2 style="color:var(--red)">RAKTH SETU</h2><h3>Certificate of Appreciation</h3>
   <p>Certified that</p><h2>${name}</h2><p>is registered as ${blood} donor from ${city}</p><p><b>ID: RS${id}</b></p>
   <button class="btn-red" onclick="window.print()">Download Certificate</button></div>`;
@@ -656,7 +657,17 @@
             let d = donors.find(x => 'RS' + x.id == id);
             document.getElementById('verifyResult').innerHTML = d ? `<div class="card" style="background:#c6f6d5">✅ Valid Certificate<br>Name: ${d.name}<br>Blood: ${d.blood}<br>Phone: ${d.phone}</div>` : `<div class="card" style="background:#fed7d7">❌ Invalid ID</div>`;
         }
-        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Modal ke bahar click karne pe band ho jaye
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('modal')) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 
